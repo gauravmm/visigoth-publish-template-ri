@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Schedule for {{ person.name }}</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+  <h1>{{ person.name }}</h1>
+
+## This demonstrates the alternate syntax. At the start of a line, ## begins a comment, and %% begins a block command.
+## You can mix and match syntax if you like.
+%% for day in schedule:
+  <h2>{{ day.date }}</h2>
+  <table>
+    <thead><tr><th>Day {{ day.number + 1 }}</th><th>Location</th><th>Name</th></tr></thead>
+    <tbody>
+%%  for timeslot in day.timeslots:
+%%    if timeslot.events | length == 0:
+        <tr><th>{{ timeslot.time }}</th><td></td><td></td></tr>
+%%    endif
+%%    for event in timeslot.events:
+        <tr>
+## If this is the first event in the timeslot, then print the time
+            <th>{% if loop.index == 1 %}{{ timeslot.time }}{% endif %}</th>
+            <td>{{ event.location }}</td>
+%%           if event.is_meeting:
+            <td>
+              <b>Meeting: </b>
+%%               if person.role == "host":
+%%                 for visitor in event.visitors:
+                    <a href="http://applyweb/{{ visitor.data.id }}">{{ visitor.name }}</a>
+%%                 endfor
+%%               else:
+## If the meeting is combined, mention that but don't include the name of the other user
+                  {{ event.host.name }} {% if event.visitors | length > 1 %}(combined meeting){% endif %}
+%%               endif
+              </td>
+%%           else:
+              <td>{{ event.name }}</td>
+%%           endif
+          </tr>
+%%       endfor
+%%     endfor
+    </tbody></table>
+%% endfor
+
+## Print unsatisfied meeting excuses, if this is the schedule for a student.
+%% if (person.role == "visitor") and (unsatisfied_requests | length > 0)
+    <h3>Unsatisfied meeting requests:</h3>
+    <ul class='unsat'>
+%%   for unsat_person in unsatisfied_requests
+      <li>{{ unsat_person.name }} <span>{{ unsat_person.data.excuse }}</span></li>
+%%   endfor
+    </ul>
+%% endif
+
+  </body>
+</html>
