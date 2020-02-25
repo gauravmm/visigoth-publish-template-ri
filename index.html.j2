@@ -17,21 +17,26 @@
 %%    if (timeslot.events + timeslot.meetings) | length == 0:
         <tr><th>{{ timeslot.time }}</th><td></td><td></td></tr>
 %%    endif
-%%    for event in (timeslot.events + timeslot.meetings):
+%%    for event in (timeslot.meetings + timeslot.events):
         <tr>
 ## If this is the first event in the timeslot, then print the time
             <th>{% if loop.index == 1 %}{{ timeslot.time }}{% endif %}</th>
             <td>{{ event.location }}</td>
-%%           if event.is_meeting:
+%%          if event.is_meeting:
             <td>
               <b>Meeting: </b>
-%%               if person.role == "host":
-%%                 for visitor in event.visitors:
-                    <a href="http://applyweb/{{ visitor.data.id }}">{{ visitor.name }}</a>
-%%                 endfor
-%%               else:
+%%              if person.role == "host":
+%%                for visitor in event.visitors:
+                    <a href="https://applygrad.cs.cmu.edu/admin/index.php?viewApplication={{ visitor.data.id }}&viewDepartment=1">{{ visitor.name }}</a>
+%%                endfor
+%%              else:
+%%                if event.host.data.website:
+                      <a href="{event.host.data.website}">{{ event.host.name }}</a>
+%%                else:
+                    {{ event.host.name }}
+%%                endif
 ## If the meeting is combined, mention that but don't include the name of the other user
-                  {{ event.host.name }} {% if event.visitors | length > 1 %}(combined meeting){% endif %}
+                  {% if event.visitors | length > 1 %}(combined meeting){% endif %}
 %%               endif
               </td>
 %%           else:
