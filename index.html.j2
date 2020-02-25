@@ -14,10 +14,10 @@
     <thead><tr><th>Day {{ day.number + 1 }}</th><th>Location</th><th>Name</th></tr></thead>
     <tbody>
 %%  for timeslot in day.timeslots:
-%%    if timeslot.events | length == 0:
+%%    if (timeslot.events + timeslot.meetings) | length == 0:
         <tr><th>{{ timeslot.time }}</th><td></td><td></td></tr>
 %%    endif
-%%    for event in timeslot.events:
+%%    for event in (timeslot.events + timeslot.meetings):
         <tr>
 ## If this is the first event in the timeslot, then print the time
             <th>{% if loop.index == 1 %}{{ timeslot.time }}{% endif %}</th>
