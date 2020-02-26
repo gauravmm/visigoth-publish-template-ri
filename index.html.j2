@@ -24,7 +24,7 @@
 %%  for timeslot in day.timeslots:
     {% if timeslot.hour % 2 == 0 %}{% set time_class = "timeblock-start" %}{% endif %}
 %%    if (timeslot.events + timeslot.meetings) | length == 0:
-        <tr class="{time_class}"><th>{{ timeslot.time }}</th><td></td><td></td></tr>
+        <tr class="{{time_class}}"><th>{{ timeslot.time }}</th><td></td><td></td></tr>
 %%    endif
 %%    for event in (timeslot.meetings + timeslot.events):
         <tr class="{% if loop.index == 1 %}{time_class}{% endif %}">
