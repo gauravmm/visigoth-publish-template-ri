@@ -1,0 +1,30 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+
+%% for day in schedule:
+%%  for timeslot in day.timeslots:
+%%    for event in (timeslot.meetings + timeslot.events):
+
+BEGIN:VEVENT
+UID:{{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z-{{ person.name }}{{ event.name }}{{ event.host.name }}@visigoth.xyz
+DTSTAMP: {{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z
+DTSTART: {{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z
+DTEND: {{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z
+%%          if event.is_meeting:
+LOCATION: {{ event.host.data.office }}
+%%              if person.role == "host":
+SUMMARY:Meeting with {% for visitor in event.visitors %}{{ visitor.name }} {% endfor %}
+%%              else
+SUMMARY:Meeting with {{ event.host.name }}{% if event.visitors | length > 1 %} (combined meeting){% endif %}
+%%              endif
+%%          else
+LOCATION: {{ event.location }}
+SUMMARY: {{ event.name }}
+%%          endif
+END:VEVENT
+
+%%    endfor
+%%  endfor
+%% endfor
+END:VCALENDAR
