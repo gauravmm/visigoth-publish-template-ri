@@ -7,7 +7,7 @@ PRODID:-//hacksw/handcal//NONSGML v1.0//EN
 %%    for event in (timeslot.meetings + timeslot.events):
 
 BEGIN:VEVENT
-UID:{{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z-{{ person.name }}{{ event.name }}{{ event.host.name }}@visigoth.xyz
+UID:{{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z-{{ person.name }}{{ event.host.name | default(event.name) | default("NONE") }}@visigoth.xyz
 DTSTAMP: {{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z
 DTSTART: {{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z
 DTEND: {{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z
