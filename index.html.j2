@@ -22,11 +22,12 @@
     <thead><tr><th></th><th>Location</th><th>Name</th></tr></thead>
     <tbody>
 %%  for timeslot in day.timeslots:
+    {% if timeslot.hour % 2 == 0 %}{% set time_class = "timeblock-start" %}{% endif %}
 %%    if (timeslot.events + timeslot.meetings) | length == 0:
-        <tr><th>{{ timeslot.time }}</th><td></td><td></td></tr>
+        <tr class="{time_class}"><th>{{ timeslot.time }}</th><td></td><td></td></tr>
 %%    endif
 %%    for event in (timeslot.meetings + timeslot.events):
-        <tr>
+        <tr class="{% if loop.index == 1 %}{time_class}{% endif %}">
 ## If this is the first event in the timeslot, then print the time
             <th>{% if loop.index == 1 %}{{ timeslot.time }}{% endif %}</th>
 %%          if event.is_meeting:

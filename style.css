@@ -137,12 +137,16 @@ footer a {
     Coloring
 */
 table > thead {
-    background: #666;
-    color: #FFF;
+    color: #333;
+}
+
+table > thead > tr:last-child > * {
+    border-top: thin solid #666;
+    border-bottom: thin solid #666;
 }
 
 table > tbody > tr:last-child > * {
-    border-bottom: thick solid #AAA;
+    border-bottom: thick double #666;
 }
 
 table > tbody > tr.timeblock-start:not(:first-child) > * {
