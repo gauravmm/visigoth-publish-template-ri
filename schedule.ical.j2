@@ -7,10 +7,10 @@ PRODID:-//hacksw/handcal//NONSGML v1.0//EN
 %%    for event in (timeslot.meetings + timeslot.events):
 
 BEGIN:VEVENT
-UID:{{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z-{{ person.name }}{{ event.name | default("NONE") }}@visigoth.xyz
-DTSTAMP: {{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z
-DTSTART: {{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z
-DTEND: {{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}Z
+UID:{{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}-{{ person.name }}{{ event.name | default("NONE") }}@visigoth.xyz
+DTSTAMP:{{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}
+DTSTART:{{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}
+DTEND:{{ day.date | replace("-", "") }}T{{ "%02d%02d00"|format(timeslot.hour, timeslot.minute) }}
 %%          if event.is_meeting:
 LOCATION: {{ event.host.data.office }}
 %%              if person.role == "host":
