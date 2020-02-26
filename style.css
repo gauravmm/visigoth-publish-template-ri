@@ -22,6 +22,118 @@ table {
 }
 
 /*
+    Styling
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: absolute;
+    width: 100%;
+    padding: .5em;
+    background: #1c58a1;
+    color: #FFF;
+    box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+header h1 {
+    display: inline;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 1em .5em 2em;
+    background: #1c58a1;
+    color: #FFF;
+    box-shadow: 0 -2px 4px rgba(0,0,0,.5);
+}
+
+footer div {
+    margin: .25em auto 0;
+}
+
+footer .visigoth {
+    font-size: 1.5em;
+    font-family: "Lobster",serif;
+    font-weight: 400;
+    color: #acc1da;
+}
+footer .visigoth::first-letter {
+    color: #FFF;
+}
+
+footer a {
+    color: #FFF;
+}
+
+/*
+    Responsive
+*/
+
+.main {
+    width: 100%;
+    background-color: #FFF;
+    z-index: 1000;
+    padding: 2em .5em 5em;
+}
+
+.main>h2 {
+    width: 12em;
+    margin: 12px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,.5);
+    padding: 3px 12px 3px;
+    background:#1c58a1;
+    color:#fff;
+    font-weight: normal;
+}
+.main>h2>span {
+    font-weight: bold;
+}
+
+.main > table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.main > table tr > *:first-child {
+    width: 6em;
+}
+.main > table tr > *:nth-child(2) {
+    width: 12em;
+}
+
+@media (min-width: 1200px) {
+    .main {
+        box-shadow: 0 .5px 1px rgba(0,0,0,.5);
+    }
+
+    .main>h2{
+        margin-left: -4em;
+    }
+
+    .main>h2>span {
+        display: inline-block;
+        font-weight: bold;
+        width: 4em;
+    }
+
+    .wrapper {
+        width: 900px;
+        margin: auto;
+    }
+
+    body {
+        background-color: #dbdce5;
+        background-image: url(bkg.svg);
+    }
+}
+
+/*
     Coloring
 */
 table > thead {
@@ -30,13 +142,16 @@ table > thead {
 }
 
 table > tbody > tr:last-child > * {
-    border-bottom: thick solid #666;
+    border-bottom: thick solid #AAA;
 }
 
 table > tbody > tr.timeblock-start:not(:first-child) > * {
     border-top: thin solid #000;
 }
 
-table > tbody > tr.alt_row_0 {
-    background: #EEE;
+table > tbody th {
+    font-weight: normal;
+}
+table > tbody > tr.round-hour > th {
+    font-weight: bold;
 }
