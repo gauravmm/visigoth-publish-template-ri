@@ -149,13 +149,15 @@ table > tbody > tr:last-child > * {
     border-bottom: thick double #666;
 }
 
-table > tbody > tr.timeblock-start:not(:first-child) > * {
+table > tbody > tr.timeblock-start:not(:first-child):not(:last-child) > * {
     border-top: thin solid #000;
 }
 
 table > tbody th {
     font-weight: normal;
+    color: #888;
 }
 table > tbody > tr.hour-start > th {
     font-weight: bold;
+    color: #333;
 }
