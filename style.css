@@ -156,6 +156,6 @@ table > tbody > tr.timeblock-start:not(:first-child) > * {
 table > tbody th {
     font-weight: normal;
 }
-table > tbody > tr.round-hour > th {
+table > tbody > tr.hour-start > th {
     font-weight: bold;
 }

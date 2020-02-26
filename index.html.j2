@@ -22,7 +22,8 @@
     <thead><tr><th></th><th>Location</th><th>Name</th></tr></thead>
     <tbody>
 %%  for timeslot in day.timeslots:
-    {% if timeslot.hour % 2 == 0 and timeslot.minute == 0 %}{% set time_class = "timeblock-start" %}{% endif %}
+    {% if timeslot.minute == 0 %}{% set time_class = "hour-start" %}{% endif %}
+    {% if timeslot.hour % 2 == 0 and timeslot.minute == 0 %}{% set time_class = "timeblock-start hour-start" %}{% endif %}
 %%    if (timeslot.events + timeslot.meetings) | length == 0:
         <tr class="{{time_class}}"><th>{{ timeslot.time }}</th><td></td><td></td></tr>
 %%    endif
