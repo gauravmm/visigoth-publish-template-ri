@@ -41,8 +41,8 @@
                     <a href="https://applygrad.cs.cmu.edu/admin/index.php?viewApplication={{ visitor.data.id }}&viewDepartment=1">{{ visitor.name }}</a>
 %%                endfor
 %%              else:
-%%                if event.host.data.website:
-                      <a href="{event.host.data.website}">{{ event.host.name }}</a>
+%%                if event.host.custom.website:
+                      <a href="{event.host.custom.website}">{{ event.host.name }}</a>
 %%                else:
                     {{ event.host.name }}
 %%                endif
@@ -65,7 +65,7 @@
     <h3>Unsatisfied meeting requests:</h3>
     <ul class='unsat'>
 %%   for unsat_person in unsatisfied_requests
-      <li>{{ unsat_person.name }} <span>{{ unsat_person.data.excuse }}</span></li>
+      <li>{{ unsat_person.name }} <span>{{ unsat_person.custom.excuse }}</span></li>
 %%   endfor
     </ul>
 %% endif
