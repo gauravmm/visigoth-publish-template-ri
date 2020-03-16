@@ -33,7 +33,7 @@
 ## If this is the first event in the timeslot, then print the time
             <th>{% if loop.index == 1 %}{{ timeslot.time }}{% endif %}</th>
 %%          if event.is_meeting:
-            <td>{{ event.host.custom.office }}</td>
+            <td><a href="{{ event.visitors[0].zoom_link }}">Zoom &#x1f517;</a></td>
             <td>
               <b class="meeting">Meeting:</b>
 %%              if person.role == "host":
@@ -51,7 +51,7 @@
 %%               endif
               </td>
 %%           else:
-              <td>{{ event.location }}</td>
+              <td><a href="{{ event.location }}">Zoom &#x1f517;</a></td>
               <td>{{ event.name }}</td>
 %%           endif
           </tr>
