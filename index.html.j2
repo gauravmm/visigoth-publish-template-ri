@@ -33,12 +33,18 @@
 ## If this is the first event in the timeslot, then print the time
             <th>{% if loop.index == 1 %}{{ timeslot.time }}{% endif %}</th>
 %%          if event.is_meeting:
-            <td><a href="{{ event.visitors[0].zoom_link }}">Zoom &#x1f517;</a></td>
+            <td>
+              <a href="{{ event.visitors[0].zoom_link }}">Zoom &#x1f517;</a>
+%%          if event.visitors | length > 0:
+              <br />
+              <a href="tel:{{ event.visitors[0].cell_no }}">&#9742; {{ event.visitors[0].cell_no }}</a>
+%%          endif
+            </td>
             <td>
               <b class="meeting">Meeting:</b>
 %%              if person.role == "host":
 %%                for visitor in event.visitors:
-                    <a href="https://applygrad.cs.cmu.edu/admin/index.php?viewApplication={{ visitor.data.id }}&viewDepartment=1">{{ visitor.name }}</a>
+                    <a href="https://applygrad.cs.cmu.edu/admin/index.php?viewApplication={{ visitor.custom.app_id }}&viewDepartment=3">{{ visitor.name }}</a>
 %%                endfor
 %%              else:
 %%                if event.host.custom.website:
