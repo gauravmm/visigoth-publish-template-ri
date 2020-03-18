@@ -36,8 +36,10 @@
             <td>
               <a href="{{ event.visitors[0].zoom_link }}">Zoom &#x1f517;</a>
 %%          if event.visitors | length > 0:
+%%          if event.visitors[0].cell_no:
               <br />
               <a href="tel:{{ event.visitors[0].cell_no }}">&#9742; {{ event.visitors[0].cell_no }}</a>
+%%          endif
 %%          endif
             </td>
             <td>
