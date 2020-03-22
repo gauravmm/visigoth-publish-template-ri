@@ -78,10 +78,11 @@
     </ul>
 %% endif
 
+%% if (person.role == "visitor")
     <h3>Student Contact</h3>
 
     Your student contact is {{ person.custom.student_host }} (<a href="mailto:{{ person.custom.student_host_email }}">{{ person.custom.student_host_email }}</a>)
-
+%% endif
     </div>
 
     <footer>
