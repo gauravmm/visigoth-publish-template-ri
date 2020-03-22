@@ -34,7 +34,7 @@
             <th>{% if loop.index == 1 %}{{ timeslot.time }}{% endif %}</th>
 %%          if event.is_meeting:
             <td>
-              <a href="{{ event.visitors[0].zoom_link }}">Zoom &#x1f517;</a>
+              <a href="{{ event.host.zoom_link }}">Zoom &#x1f517;</a>
 %%          if event.visitors | length > 0:
 %%          if event.visitors[0].cell_no:
               <br />
