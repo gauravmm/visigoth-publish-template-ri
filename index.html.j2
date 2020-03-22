@@ -35,10 +35,12 @@
 %%          if event.is_meeting:
             <td>
               <a href="{{ event.host.custom.zoom_link }}">Zoom &#x1f517;</a>
+%%          if (person.role != "visitor"):
 %%          if event.visitors | length > 0:
 %%          if event.visitors[0].custom.cell_no:
               <br />
               <a href="tel:{{ event.visitors[0].custom.cell_no }}">&#9742; {{ event.visitors[0].custom.cell_no }}</a>
+%%          endif
 %%          endif
 %%          endif
             </td>
